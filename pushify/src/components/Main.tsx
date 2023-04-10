@@ -1,27 +1,31 @@
 import React, { FC } from "react";
-import {
-  MainContainer,
-  H1,
-  LibrariesList,
-  AlbumDiv,
-  Albums,
-} from "./styles/MainStyles";
+import { MainContainer, H1, LibrariesList } from "./styles/MainStyles";
 import { useTranslation } from "react-i18next";
 import { albums } from "../utils/Albums";
+import { Album } from "./Album";
 
 export const Main: FC = () => {
   const { t } = useTranslation();
 
+  const d: any = new Date();
+  const hour: number = d.getHours();
+
+  let greeting: string = "";
+
+  if (hour >= 5 && hour < 12) {
+    greeting = t("gm");
+  } else if (hour >= 12 && hour < 18) {
+    greeting = t("ga");
+  } else {
+    greeting = t("ge");
+  }
+
   return (
     <MainContainer>
-      <H1>{t("gm")}</H1>
+      <H1>{greeting}</H1>
       <LibrariesList>
         {albums.map((a) => {
-          return (
-            <AlbumDiv key={a.id}>
-              <Albums src={a.src}></Albums>
-            </AlbumDiv>
-          );
+          return <Album key={a.id} src={a.src} artist={a.artist} />;
         })}
       </LibrariesList>
     </MainContainer>

@@ -31,18 +31,24 @@ export const AlbumDiv = styled.div`
   width: 32%;
   backdrop-filter: blur(5px);
   background-color: #ffffff15;
-  padding-left: 5px;
-  padding-top: 5px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  transition: all 0.8s ease;
+  position: relative;
 
   &:hover {
     background-color: #ffffff35;
-    transition: all 0.8s ease;
   }
 `;
 
 export const Albums = styled.img`
   width: 25%;
   border-radius: 5px;
+`;
+
+export const Artist = styled.h5`
+  color: #ffffff85;
 `;
