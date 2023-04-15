@@ -13,5 +13,8 @@
   "languageSet": "Wybierz język",
   "polish": "Polski",
   "english": "Angielski",
-  "select": "Wybierz"
+  "select": "Wybierz",
+  "title": "Tytuł",
+  "album": "Album",
+  "duration": "Długość"
 }

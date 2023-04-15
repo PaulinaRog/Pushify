@@ -10,6 +10,8 @@ export const MainContainer = styled.main`
   height: 100vh;
   position: fixed;
   left: 15%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const H1 = styled.h1`

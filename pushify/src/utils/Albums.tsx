@@ -1,39 +1,45 @@
 import nonblondes from "../assets/4nonblondes.jpg";
 import iseered from "../assets/iseered.jpg";
-import kyla from "../assets/kyla.jpg";
-import multilove from "../assets/multilove.jpg";
-import panther from "../assets/panther.jpg";
-import totaleclipse from "../assets/totaleclipse.jpg";
+import rem from "../assets/rem.jpg";
+import berlin from "../assets/berlin.jpg";
+import queen from "../assets/queen.jpg";
+import stealers from "../assets/stealers.jpg";
 
 export const albums = [
   {
     id: 1,
     src: nonblondes,
     artist: "4 Non Blondes",
+    api: "https://api.deezer.com/artist/1187/top?limit=50",
   },
   {
     id: 2,
     src: iseered,
     artist: "Everybody Loves an Outlaw",
+    api: "https://api.deezer.com/artist/53465462/top?limit=50",
   },
   {
     id: 3,
-    src: kyla,
-    artist: "Kyla La Grange",
+    src: rem,
+    artist: "R.E.M.",
+    api: "https://api.deezer.com/artist/129/top?limit=50",
   },
   {
     id: 4,
-    src: multilove,
-    artist: "Unknown Mortal Orchestra",
+    src: berlin,
+    artist: "Berlin",
+    api: "https://api.deezer.com/artist/1678285/top?limit=50",
   },
   {
     id: 5,
-    src: panther,
-    artist: "Pain of Salvation",
+    src: queen,
+    artist: "Queen",
+    api: "https://api.deezer.com/artist/412/top?limit=50",
   },
   {
     id: 6,
-    src: totaleclipse,
-    artist: "Bonnie Tyler",
+    src: stealers,
+    artist: "Stealers Wheel",
+    api: "https://api.deezer.com/artist/4900/top?limit=50",
   },
 ];
