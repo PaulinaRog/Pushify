@@ -10,10 +10,10 @@ import {
   PickLanguage,
   SelectLangContainer,
 } from "../components/styles/SettingsStyles";
-import i18next from "i18next";
+import i18next, { TFunction } from "i18next";
 
 export const Settings: FC = () => {
-  const { t } = useTranslation();
+  const { t }: { t: TFunction } = useTranslation();
 
   const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     i18next.changeLanguage(e.currentTarget.value);

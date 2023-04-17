@@ -17,9 +17,9 @@ export const ViewAlbum: FC = () => {
   const { id } = useParams<RouteParams>();
   const [data, setData] = useState<ApiResponse | null>(null);
 
-  const api = albums[Number(id) - 1].api;
+  const api: string = albums[Number(id) - 1].api;
 
-  const getData = async () => {
+  const getData = async (): Promise<ApiResponse> => {
     const response = await fetch(`https://cors-anywhere.herokuapp.com/${api}`);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
