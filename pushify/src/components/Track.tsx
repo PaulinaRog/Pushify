@@ -1,18 +1,16 @@
-import React, { FC, HTMLProps, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Box, Idx, SingleTrackCont, TitleBox } from "./styles/TrackListStyles";
 import { Li } from "./styles/SideMenuStyles";
 import { Bar1, Bar2, Bar3, BarsContainer } from "./styles/PlayerStyles";
+import { TrackProps } from "../utils/Interface";
+import { useDispatch } from "react-redux";
+import { updateTrackData } from "../utils/Slice";
+import { TrackData } from "../utils/Interface";
 
-interface TrackData {
-  d: any;
-  idx: number;
-}
-
-export const Track: FC<TrackData> = ({ d, idx }) => {
+export const Track: FC<TrackProps> = ({ d, idx }) => {
   const [play, setPlay] = useState<React.ReactNode>(<p>{idx + 1}</p>);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const url: string = d.preview;
-  const audio = new Audio(url);
+  const dispatch = useDispatch();
 
   function secondsToMinutes(time: number) {
     return (
@@ -39,7 +37,6 @@ export const Track: FC<TrackData> = ({ d, idx }) => {
 
   const handleClick = (e: React.MouseEvent) => {
     setIsPlaying(true);
-    audio.play();
     setPlay(
       <BarsContainer>
         <Bar1></Bar1>
@@ -49,11 +46,16 @@ export const Track: FC<TrackData> = ({ d, idx }) => {
     );
   };
 
+  const handleUpdate = (d: TrackData) => {
+    dispatch(updateTrackData(d));
+  };
+
   return (
     <>
       <SingleTrackCont
         onMouseOver={handlemouseOver}
         onMouseLeave={handleMouseLeave}
+        onClick={(e: React.MouseEvent) => handleUpdate(d)}
       >
         <TitleBox>
           <Idx>{play}</Idx>

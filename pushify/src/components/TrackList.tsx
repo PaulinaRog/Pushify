@@ -1,25 +1,20 @@
 import React, { FC } from "react";
 import {
   TitleBox,
-  SingleTrackCont,
   TracksContainer,
   Idx,
   Box,
   TracksHeader,
   DecorLine,
 } from "./styles/TrackListStyles";
-import { Li, List } from "./styles/SideMenuStyles";
+import { List } from "./styles/SideMenuStyles";
 import { Track } from "./Track";
 import { useTranslation } from "react-i18next";
-
-interface AlbumData {
-  data: any;
-}
+import { AlbumData, TrackData } from "../utils/Interface";
+import { TFunction } from "i18next";
 
 export const TrackList: FC<AlbumData> = ({ data }) => {
-  const { t } = useTranslation();
-
-  console.log(data);
+  const { t }: { t: TFunction } = useTranslation();
 
   return (
     <TracksContainer>
@@ -37,10 +32,8 @@ export const TrackList: FC<AlbumData> = ({ data }) => {
       </TracksHeader>
       <DecorLine></DecorLine>
       <List>
-        {data.data.map((d: any, idx: number) => (
-          <>
-            <Track d={d} idx={idx} key={idx} />
-          </>
+        {data.data.map((d: TrackData, idx: number) => (
+          <Track d={d} idx={idx} key={idx} />
         ))}
       </List>
     </TracksContainer>

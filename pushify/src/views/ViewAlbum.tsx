@@ -10,15 +10,12 @@ import {
 } from "../components/styles/ViewAlbumStyles";
 import { TrackList } from "../components/TrackList";
 import { Player } from "../components/Player";
-
-interface RouteParams {
-  id: string;
-  [key: string]: string | undefined;
-}
+import { RouteParams } from "../utils/Interface";
+import { ApiResponse } from "../utils/Interface";
 
 export const ViewAlbum: FC = () => {
   const { id } = useParams<RouteParams>();
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ApiResponse | null>(null);
 
   const api = albums[Number(id) - 1].api;
 

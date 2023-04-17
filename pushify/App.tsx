@@ -10,6 +10,8 @@ import { I18nextProvider } from "react-i18next";
 import { ViewAlbum } from "./src/views/ViewAlbum";
 import en from "../pushify/i18next/en.json";
 import pl from "../pushify/i18next/pl.json";
+import { Provider } from "react-redux";
+import store from "./src/utils/Store";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -44,18 +46,20 @@ export const App: FC = () => {
 
   return (
     <>
-      <I18nextProvider i18n={i18next}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="album">
-              <Route path=":id" element={<ViewAlbum />} />
-            </Route>
-            <Route path="settings" element={<Settings />} />
-          </Routes>
-        </BrowserRouter>
-      </I18nextProvider>
+      <Provider store={store}>
+        <I18nextProvider i18n={i18next}>
+          <GlobalStyle />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="album">
+                <Route path=":id" element={<ViewAlbum />} />
+              </Route>
+              <Route path="settings" element={<Settings />} />
+            </Routes>
+          </BrowserRouter>
+        </I18nextProvider>
+      </Provider>
     </>
   );
 };

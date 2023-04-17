@@ -3,9 +3,10 @@ import { MainContainer, H1, LibrariesList } from "./styles/MainStyles";
 import { useTranslation } from "react-i18next";
 import { albums } from "../utils/Albums";
 import { Album } from "./Album";
+import { TFunction } from "i18next";
 
 export const Main: FC = () => {
-  const { t } = useTranslation();
+  const { t }: { t: TFunction } = useTranslation();
 
   const d: any = new Date();
   const hour: number = d.getHours();

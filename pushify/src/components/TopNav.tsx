@@ -10,7 +10,8 @@ import {
 } from "./styles/TopNavStyles";
 import { useTranslation } from "react-i18next";
 import pfp from "../assets/pfp.jpg";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { TFunction } from "i18next";
 
 export const TopNav: FC = () => {
   const ico: object = { fontSize: "1.5em" };
@@ -18,9 +19,9 @@ export const TopNav: FC = () => {
   const [dropdown, setDropdown] = useState<object>({ display: "none" });
   const [check, setCheck] = useState<boolean>(false);
 
-  const { t } = useTranslation();
+  const { t }: { t: TFunction } = useTranslation();
 
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const handleClick = (e: React.MouseEvent) => {
     if (check === false) {

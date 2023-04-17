@@ -1,13 +1,14 @@
 import React, { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Logo, Aside, List, Li } from "./styles/SideMenuStyles";
 import { useTranslation } from "react-i18next";
+import { TFunction } from "i18next";
 
 export const SideMenu: FC = () => {
   const [animate, setAnimate] = useState<string>("");
 
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+  const navigate: NavigateFunction = useNavigate();
+  const { t }: { t: TFunction } = useTranslation();
 
   const handleNavigate = (e: React.MouseEvent) => {
     navigate("/");
@@ -34,7 +35,7 @@ export const SideMenu: FC = () => {
         <i className={`fa-brands fa-pushed ${animate}`}></i> Pushify
       </Logo>
       <List>
-        <Li>
+        <Li onClick={handleNavigate}>
           <i style={ico} className="fa-solid fa-house"></i> {t("home")}
         </Li>
         <Li>

@@ -1,17 +1,12 @@
 import React, { FC, useState } from "react";
 import { AlbumDiv, Albums, Artist } from "./styles/MainStyles";
-import { useNavigate } from "react-router-dom";
-
-interface AlbumProps {
-  src: string;
-  artist: string;
-  albumId: number;
-}
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { AlbumProps } from "../utils/Interface";
 
 export const Album: FC<AlbumProps> = ({ src, artist, albumId }) => {
   const [visibility, setVisibility] = useState<string>("none");
 
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const ico: object = {
     fontSize: "2em",
