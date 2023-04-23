@@ -20,7 +20,7 @@ export const GenreList: FC = () => {
   const state: string = location.state.title;
 
   const api: string = `https://api.deezer.com/radio/${id}/tracks`;
-  const baseUrl: string = `${api}`;
+  const baseUrl: string = `https://cors-anywhere.herokuapp.com/${api}`;
 
   const getData = async (): Promise<RadioData> => {
     const response = await fetch(baseUrl);
