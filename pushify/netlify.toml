@@ -4,6 +4,6 @@
   status = 200
 
 [[headers]]
-  for = "pushify/src"
+  for = "/src/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
