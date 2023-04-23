@@ -12,6 +12,9 @@ import en from "../pushify/i18next/en.json";
 import pl from "../pushify/i18next/pl.json";
 import { Provider } from "react-redux";
 import store from "./src/utils/Store";
+import { SearchEngine } from "./src/views/SearchEngine";
+import { GenreList } from "./src/views/GenreList";
+import { GenreTracks } from "./src/components/GenreTracks";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -55,7 +58,11 @@ export const App: FC = () => {
               <Route path="album">
                 <Route path=":id" element={<ViewAlbum />} />
               </Route>
+              <Route path="search" element={<SearchEngine />} />
               <Route path="settings" element={<Settings />} />
+              <Route path="genres" element={<GenreList />}>
+                <Route path=":id" element={<GenreTracks />} />
+              </Route>
             </Routes>
           </BrowserRouter>
         </I18nextProvider>

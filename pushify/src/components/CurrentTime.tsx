@@ -1,15 +1,15 @@
 import React, { FC, useState, useEffect, forwardRef } from "react";
 import { CurrentTimeProps } from "../utils/Interface";
 import { TitleBox } from "./styles/TrackListStyles";
-import { Length, LengthBox, PlayedLength } from "./styles/PlayerStyles";
+import { RangeInput } from "./styles/PlayerStyles";
 import { TrackListState } from "../utils/Interface";
 import { useSelector } from "react-redux";
 
 export const CurrentTime: FC<CurrentTimeProps> = forwardRef(
-  ({ audioRef, isPlaying, setPlay, ico }, ref) => {
+  ({ audioRef }, ref) => {
     const [time, setTime] = useState<number>(0);
-    const [played, setPlayed] = useState<number>(0);
-    const [left, setLeft] = useState<number>(120);
+    const [bgSize, setBgSize] = useState<string>("0%");
+
     const trackData = useSelector(
       (state: TrackListState) => state.trackList.trackData
     );
@@ -27,28 +27,31 @@ export const CurrentTime: FC<CurrentTimeProps> = forwardRef(
 
     useEffect(() => {
       const intervalId = setInterval(() => {
-        setTime(audioRef.current ? audioRef.current.currentTime : 0);
-        if (isPlaying) {
-          setPlayed(audioRef.current ? audioRef.current.currentTime * 4 : 0);
-          setLeft(
-            audioRef.current ? 120 - audioRef.current.currentTime * 4 : 0
-          );
-        }
+        setBgSize(`${audioRef.current?.currentTime}%`);
+        setTime(Number(audioRef.current?.currentTime));
       }, 1000);
 
       return () => {
         clearInterval(intervalId);
       };
-    }, [audioRef, isPlaying, setPlay]);
+    }, [audioRef.current?.currentTime]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value: string = e.currentTarget.value;
+      audioRef.current && (audioRef.current.currentTime = Number(value) / 100);
+      setBgSize(`${Number(audioRef.current?.currentTime) * 100}%`);
+    };
 
     return (
       <>
         <TitleBox>
           <p>{secondsToMinutes(time)}</p>
-          <LengthBox>
-            <PlayedLength style={{ width: played }}></PlayedLength>
-            <Length style={{ width: left }}></Length>
-          </LengthBox>
+          <RangeInput
+            type="range"
+            defaultValue={0}
+            onChange={handleChange}
+            style={{ backgroundSize: bgSize }}
+          ></RangeInput>
           <p>{secondsToMinutes(trackData?.duration)}</p>
         </TitleBox>
       </>

@@ -27,7 +27,13 @@ export const Main: FC = () => {
       <LibrariesList>
         {albums.map((a) => {
           return (
-            <Album key={a.id} albumId={a.id} src={a.src} artist={a.artist} />
+            <Album
+              key={a.id}
+              albumId={a.id}
+              src={a.src}
+              artist={a.artist}
+              tracklist={a.api}
+            />
           );
         })}
       </LibrariesList>

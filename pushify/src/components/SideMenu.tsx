@@ -12,7 +12,10 @@ export const SideMenu: FC = () => {
 
   const handleNavigate = (e: React.MouseEvent) => {
     navigate("/");
-    console.log("redirected");
+  };
+
+  const handleGoToSearch = (e: React.MouseEvent) => {
+    navigate("/search");
   };
 
   const handleMouseOver = (e: React.MouseEvent) => {
@@ -38,7 +41,7 @@ export const SideMenu: FC = () => {
         <Li onClick={handleNavigate}>
           <i style={ico} className="fa-solid fa-house"></i> {t("home")}
         </Li>
-        <Li>
+        <Li onClick={handleGoToSearch}>
           <i style={ico} className="fa-solid fa-magnifying-glass"></i>{" "}
           {t("search")}
         </Li>

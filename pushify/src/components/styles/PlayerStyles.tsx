@@ -74,20 +74,6 @@ export const PlayerBtn = styled.button`
   }
 `;
 
-export const LengthBox = styled.div`
-  display: flex;
-`;
-
-export const Length = styled.div`
-  height: 3px;
-  background-color: #ffffff65;
-`;
-
-export const PlayedLength = styled.div`
-  height: 3px;
-  background-color: fuchsia;
-`;
-
 export const PlayerBox = styled.div`
   display: flex;
   flex-direction: column;

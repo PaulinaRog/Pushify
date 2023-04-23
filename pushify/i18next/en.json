@@ -16,5 +16,7 @@
   "select": "Select",
   "title": "Title",
   "album": "Album",
-  "duration": "Duration"
+  "duration": "Duration",
+  "listen": "What do you want to listen to",
+  "browse": "Browse all"
 }

@@ -29,6 +29,7 @@ export interface AlbumProps {
   src: string;
   artist: string;
   albumId: number;
+  tracklist: string;
 }
 
 export interface TrackListState {
@@ -53,4 +54,54 @@ export interface CurrentTimeProps {
 
 export interface AudioRef {
   audioRef: React.RefObject<HTMLAudioElement>;
+}
+
+export interface Genre {
+  data: Array<GenreData>;
+}
+
+export interface GenreData {
+  title: string;
+  picture_medium: string;
+  id: number;
+  tracklist: string;
+}
+
+export interface GenreProps {
+  data: Genre;
+}
+
+export interface RadioApi {
+  data: Array<RadioData>;
+}
+
+export interface RadioData {
+  data: Array<RadioDataData>;
+}
+
+export interface RadioDataData {
+  artist: RadioArtist;
+  album: RadioAlbum;
+}
+
+export interface RadioProps {
+  data: RadioApi;
+}
+
+export interface RadioArtist {
+  id: number;
+  name: string;
+  tracklist: string;
+  picture_medium: string;
+}
+
+export interface RadioAlbum {
+  id: number;
+  title: string;
+  cover_medium: string;
+  tracklist: string;
+}
+
+export interface Title {
+  title: string;
 }

@@ -54,3 +54,10 @@ export const Albums = styled.img`
 export const Artist = styled.h5`
   color: #ffffff85;
 `;
+
+export const H2 = styled.h2`
+  color: white;
+  filter: opacity(0.5) contrast(0.8);
+  padding: 20px;
+  margin-top: 5vh;
+`;

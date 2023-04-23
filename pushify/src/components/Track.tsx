@@ -57,15 +57,20 @@ export const Track: FC<TrackProps> = ({ d, idx }) => {
         onMouseLeave={handleMouseLeave}
         onClick={(e: React.MouseEvent) => handleUpdate(d)}
       >
-        <TitleBox>
-          <Idx>{play}</Idx>
-          {d.album && <img src={d.album.cover_small} />}
-          <Li>{d.title}</Li>
-        </TitleBox>
-        <Box>
-          <p>{d.album.title}</p>
-          <p>{secondsToMinutes(d.duration)}</p>
-        </Box>
+        {d.album && (
+          <>
+            {" "}
+            <TitleBox>
+              <Idx>{play}</Idx>
+              <img src={d.album.cover_small} />
+              <Li>{d.title}</Li>
+            </TitleBox>
+            <Box>
+              <p>{d.album.title && d.album.title}</p>
+              <p>{secondsToMinutes(d.duration)}</p>
+            </Box>
+          </>
+        )}
       </SingleTrackCont>
     </>
   );

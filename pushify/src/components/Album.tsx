@@ -3,7 +3,7 @@ import { AlbumDiv, Albums, Artist } from "./styles/MainStyles";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { AlbumProps } from "../utils/Interface";
 
-export const Album: FC<AlbumProps> = ({ src, artist, albumId }) => {
+export const Album: FC<AlbumProps> = ({ src, artist, albumId, tracklist }) => {
   const [visibility, setVisibility] = useState<string>("none");
 
   const navigate: NavigateFunction = useNavigate();
@@ -25,7 +25,13 @@ export const Album: FC<AlbumProps> = ({ src, artist, albumId }) => {
   };
 
   const handleNavigate = (e: React.MouseEvent) => {
-    navigate(`album/${e.currentTarget.id}`);
+    navigate(`album/${e.currentTarget.id}`, {
+      state: {
+        cover: src,
+        artist: artist,
+        tracklist: tracklist,
+      },
+    });
   };
 
   return (
