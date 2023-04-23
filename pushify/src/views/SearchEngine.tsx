@@ -19,7 +19,7 @@ export const SearchEngine: FC = () => {
   const [data, setData] = useState<Genre | null>(null);
   const api: string = "https://api.deezer.com/radio";
 
-  const baseUrl: string = `https://cors-anywhere.herokuapp.com/${api}`;
+  const baseUrl: string = `${api}`;
 
   const getData = async (): Promise<Genre> => {
     const response = await fetch(baseUrl);

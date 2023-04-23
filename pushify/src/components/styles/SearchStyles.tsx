@@ -42,11 +42,10 @@ export const GenresContainer = styled.div`
   width: 100%;
   height: 30vh;
   margin-top: 5vh;
-  overflow-x: scroll;
-  overflow-y: hidden;
   display: flex;
   gap: 20px;
   margin-left: 20px;
+  flex-wrap: wrap;
 `;
 
 export const GenrePic = styled.img`
