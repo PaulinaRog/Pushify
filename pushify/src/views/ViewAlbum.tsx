@@ -22,7 +22,7 @@ export const ViewAlbum: FC = () => {
   const tracklist: string = location.state.tracklist;
 
   const api: string = tracklist;
-  const baseUrl: string = `${api}`;
+  const baseUrl: string = `https://cors-anywhere.herokuapp.com/${api}`;
 
   const getData = async (): Promise<ApiResponse> => {
     const response = await fetch(baseUrl);
@@ -42,8 +42,6 @@ export const ViewAlbum: FC = () => {
         console.log(e.message);
       });
   }, [id]);
-
-  console.log(location.state);
 
   return (
     <>
