@@ -69,7 +69,7 @@ export const GenName = styled.h2`
 
 export const SearchResults = styled.div`
   width: 45%;
-  weight: 50vh;
+  height: 50vh;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -94,8 +94,8 @@ export const AlbumsContainer = styled.div`
 
 export const SearchEngineResBox = styled.div`
   background-color: #ffffff15;
-  width: 45%;
-  weight: 50vh;
+  width: 95%;
+  height: 50vh;
   margin-top: 5vh;
   display: flex;
   gap: 20px;
