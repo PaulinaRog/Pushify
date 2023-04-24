@@ -99,9 +99,19 @@ export interface RadioAlbum {
   id: number;
   title: string;
   cover_medium: string;
+  cover_small: string;
   tracklist: string;
 }
 
 export interface Title {
   title: string;
+}
+
+export interface ApiSearch {
+  data: Array<SearchResults>;
+}
+
+export interface SearchResults {
+  artist: RadioArtist;
+  album: RadioAlbum;
 }

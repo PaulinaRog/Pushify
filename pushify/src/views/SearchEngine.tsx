@@ -11,11 +11,11 @@ import {
 } from "../components/styles/SearchStyles";
 import { Genre } from "../utils/Interface";
 import { Genres } from "../components/Genres";
+import { SearchTool } from "../components/SearchTool";
 
 export const SearchEngine: FC = () => {
   const { t }: { t: TFunction } = useTranslation();
   const listen: string = t("listen");
-  const ico: object = { paddingRight: 20, fontSize: 20, paddingTop: 5 };
   const [data, setData] = useState<Genre | null>(null);
   const api: string = "https://api.deezer.com/radio";
 
@@ -46,10 +46,7 @@ export const SearchEngine: FC = () => {
       <SideMenu />
       <TopNav />
       <MainContainer>
-        <PositionedCentr>
-          <i style={ico} className="fa-solid fa-magnifying-glass"></i>
-          <Input placeholder={`${listen}?`}></Input>
-        </PositionedCentr>
+        <SearchTool />
         <H2>{t("browse")}</H2>
         <>
           <GenresContainer>

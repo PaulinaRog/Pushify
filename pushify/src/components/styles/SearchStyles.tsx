@@ -66,3 +66,38 @@ export const GenName = styled.h2`
   z-index: 3;
   opacity: 0.5;
 `;
+
+export const SearchResults = styled.div`
+  width: 45%;
+  weight: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+
+export const ArtistContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+`;
+
+export const ArtistName = styled.h4`
+  opacity: 0.5;
+`;
+
+export const AlbumsContainer = styled.div`
+  width: 45%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SearchEngineResBox = styled.div`
+  background-color: #ffffff15;
+  width: 45%;
+  weight: 50vh;
+  margin-top: 5vh;
+  display: flex;
+  gap: 20px;
+  margin-left: 2.5%;
+`;
