@@ -114,4 +114,6 @@ export interface ApiSearch {
 export interface SearchResults {
   artist: RadioArtist;
   album: RadioAlbum;
+  title: string;
+  id: string;
 }

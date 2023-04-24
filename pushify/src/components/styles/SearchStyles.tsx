@@ -77,8 +77,12 @@ export const SearchResults = styled.div`
 
 export const ArtistContainer = styled.div`
   display: flex;
+  width: 50vw;
+  height: 60vh;
   gap: 20px;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ArtistName = styled.h4`
@@ -86,18 +90,27 @@ export const ArtistName = styled.h4`
 `;
 
 export const AlbumsContainer = styled.div`
-  width: 45%;
-  height: 50vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 60vh;
 `;
 
 export const SearchEngineResBox = styled.div`
   background-color: #ffffff15;
   width: 95%;
-  height: 50vh;
+  height: 60vh;
   margin-top: 5vh;
   display: flex;
   gap: 20px;
   margin-left: 2.5%;
+  border-radius: 5px;
+`;
+
+export const ArtistPic = styled.img`
+  width: 30vh;
+  height: 30vh;
+  border-radius: 50%;
 `;

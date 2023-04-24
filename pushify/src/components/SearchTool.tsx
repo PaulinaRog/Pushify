@@ -20,14 +20,15 @@ export const SearchTool: FC = () => {
   const [data, setData] = useState<ApiSearch | null>(null);
 
   const inputValue: string = `${value}`;
-  const baseUrl: string = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${inputValue}&limit=5`;
+  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
+  const baseUrl: string = `https://api.deezer.com/search?q=${inputValue}&limit=5`;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
   };
 
   const getData = async (): Promise<ApiSearch> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku + baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -48,15 +49,6 @@ export const SearchTool: FC = () => {
     }
   }, [value]);
 
-  const reducedNames = data?.data.map((a) => a.artist.name);
-
-  const artistsReduced = reducedNames?.reduce((acc: any, a: string) => {
-    if (!acc.includes(a)) {
-      acc.push(a);
-    }
-    return acc;
-  }, []);
-
   return (
     <>
       <PositionedCentr>
@@ -70,23 +62,22 @@ export const SearchTool: FC = () => {
       {data && (
         <SearchEngineResBox>
           <SearchResults>
-            {data.data.map((d) => {
-              return (
-                <SearchResListArtist
-                  key={d.album.id}
-                  artist={d.artist}
-                  album={d.album}
-                />
-              );
-            })}
+            <SearchResListArtist
+              artist={data.data[0].artist}
+              album={data.data[0].album}
+              title={data.data[0].title}
+              id={data.data[0].id}
+            />
           </SearchResults>
           <AlbumsContainer>
             {data.data.map((al) => {
               return (
                 <SearchResListAlbums
-                  key={al.album.id}
+                  key={al.id}
                   artist={al.artist}
                   album={al.album}
+                  title={al.title}
+                  id={al.id}
                 />
               );
             })}
