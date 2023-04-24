@@ -28,7 +28,7 @@ export const SearchTool: FC = () => {
   };
 
   const getData = async (): Promise<ApiSearch> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

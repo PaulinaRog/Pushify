@@ -7,13 +7,30 @@ import {
   ArtistPic,
   GenrePic,
 } from "./styles/SearchStyles";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
-export const SearchResListArtist: FC<SearchResults> = ({ artist }) => {
+export const SearchResListArtist: FC<SearchResults> = ({ artist, album }) => {
+  const navigate: NavigateFunction = useNavigate();
+
+  const handleClick = (e: React.MouseEvent) => {
+    navigate(`/album/${album.id}`, {
+      state: {
+        cover: album.cover_medium,
+        artist: artist.name,
+        tracklist: artist.tracklist,
+      },
+    });
+    console.log("clicked");
+  };
+
   return (
     <>
       <ArtistContainer>
-        <ArtistPic src={artist.picture_medium}></ArtistPic>
-        <ArtistName>{artist.name}</ArtistName>
+        <ArtistPic
+          onClick={handleClick}
+          src={artist.picture_medium}
+        ></ArtistPic>
+        <ArtistName onClick={handleClick}>{artist.name}</ArtistName>
       </ArtistContainer>
     </>
   );

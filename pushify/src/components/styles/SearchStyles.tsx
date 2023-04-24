@@ -87,6 +87,10 @@ export const ArtistContainer = styled.div`
 
 export const ArtistName = styled.h4`
   opacity: 0.5;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const AlbumsContainer = styled.div`
@@ -113,4 +117,5 @@ export const ArtistPic = styled.img`
   width: 30vh;
   height: 30vh;
   border-radius: 50%;
+  cursor: pointer;
 `;
