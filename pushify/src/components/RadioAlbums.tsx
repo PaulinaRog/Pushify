@@ -19,10 +19,11 @@ export const RadioAlbums: FC = () => {
   const tracklist: string = location.state.tracklist;
 
   const api: string = tracklist;
-  const baseUrl: string = `https://cors-anywhere.herokuapp.com/${api}`;
+  const baseUrl: string = `${api}`;
+  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku + baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

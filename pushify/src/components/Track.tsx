@@ -6,11 +6,13 @@ import { TrackProps } from "../utils/Interface";
 import { useDispatch } from "react-redux";
 import { updateTrackData } from "../utils/Slice";
 import { TrackData } from "../utils/Interface";
+import { useNavigate } from "react-router-dom";
 
 export const Track: FC<TrackProps> = ({ d, idx }) => {
   const [play, setPlay] = useState<React.ReactNode>(<p>{idx + 1}</p>);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function secondsToMinutes(time: number) {
     return (
@@ -50,6 +52,22 @@ export const Track: FC<TrackProps> = ({ d, idx }) => {
     dispatch(updateTrackData(d));
   };
 
+  const handleClickSong = (e: React.MouseEvent) => {
+    navigate(`/track/${d.artist.id + d.album.id}`, {
+      state: {
+        cover: d.album.cover_medium,
+        artist: d.artist.name,
+        title: d.title,
+        artPic: d.artist.picture_small,
+        duration: d.duration,
+        artPicMed: d.artist.picture_medium,
+        id: d.artist.id,
+        d: d,
+      },
+    });
+    window.location.reload();
+  };
+
   return (
     <>
       <SingleTrackCont
@@ -60,10 +78,10 @@ export const Track: FC<TrackProps> = ({ d, idx }) => {
         {d.album && (
           <>
             {" "}
-            <TitleBox>
+            <TitleBox style={{ width: "48%" }}>
               <Idx>{play}</Idx>
               <img src={d.album.cover_small} />
-              <Li>{d.title}</Li>
+              <Li onClick={handleClickSong}>{d.title}</Li>
             </TitleBox>
             <Box>
               <p>{d.album.title && d.album.title}</p>

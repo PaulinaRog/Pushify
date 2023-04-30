@@ -1,10 +1,15 @@
 export interface Album {
   cover_small: string;
   title: string;
+  cover_medium: string;
+  id: number;
 }
 
 export interface Artist {
   name: string;
+  picture_small: string;
+  picture_medium: string;
+  id: number;
 }
 
 export interface TrackProps {
@@ -42,7 +47,7 @@ export interface TrackData {
   album: Album;
   title: string;
   duration: number;
-  name: Artist;
+  artist: Artist;
 }
 
 export interface CurrentTimeProps {
@@ -93,6 +98,7 @@ export interface RadioArtist {
   name: string;
   tracklist: string;
   picture_medium: string;
+  picture_small: string;
 }
 
 export interface RadioAlbum {
@@ -116,4 +122,11 @@ export interface SearchResults {
   album: RadioAlbum;
   title: string;
   id: string;
+  duration: number;
+}
+
+export interface stateProps {
+  artist: string;
+  title: string;
+  d: TrackData;
 }

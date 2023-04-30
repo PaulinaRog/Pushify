@@ -10,6 +10,7 @@ export const SearchResListAlbums: FC<SearchResults> = ({
   artist,
   title,
   id,
+  duration,
 }) => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -23,6 +24,19 @@ export const SearchResListAlbums: FC<SearchResults> = ({
     });
   };
 
+  const handleClickSong = (e: React.MouseEvent) => {
+    navigate(`/track/${id}`, {
+      state: {
+        cover: album.cover_medium,
+        artist: artist.name,
+        title: title,
+        artPic: artist.picture_small,
+        duration: duration,
+        artPicMed: artist.picture_medium,
+      },
+    });
+  };
+
   return (
     <>
       <SingleTrackCont>
@@ -30,7 +44,7 @@ export const SearchResListAlbums: FC<SearchResults> = ({
           <img src={album.cover_small} />
           <BoxCol>
             <ArtistName onClick={handleClick}>{artist.name}</ArtistName>
-            <p>{title}</p>
+            <p onClick={handleClickSong}>{title}</p>
           </BoxCol>
         </TitleBox>
       </SingleTrackCont>

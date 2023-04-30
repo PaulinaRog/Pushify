@@ -18,5 +18,11 @@
   "album": "Album",
   "duration": "Długość",
   "listen": "Czego chcesz posłuchać",
-  "browse": "Przeglądaj wszystkie"
+  "browse": "Przeglądaj wszystkie",
+  "lyrics": "Tekst",
+  "artist": "Wykonawca",
+  "notFound": "Nie znaleziono",
+  "popular": "Popularne piosenki",
+  "showMore": "Pokaż więcej",
+  "showLess": "Pokaż mniej"
 }

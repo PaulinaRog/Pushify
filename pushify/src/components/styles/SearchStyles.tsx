@@ -119,3 +119,24 @@ export const ArtistPic = styled.img`
   border-radius: 50%;
   cursor: pointer;
 `;
+
+export const ArtPicSml = styled.img`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+export const ArtPicMid = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+export const FlexGap20 = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+  align-items: center;
+`;

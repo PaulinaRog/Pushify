@@ -19,11 +19,12 @@ export const GenreList: FC = () => {
   const location: Location = useLocation();
   const state: string = location.state.title;
 
+  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
   const api: string = `https://api.deezer.com/radio/${id}/tracks`;
-  const baseUrl: string = `https://cors-anywhere.herokuapp.com/${api}`;
+  const baseUrl: string = `${api}`;
 
   const getData = async (): Promise<RadioData> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku + baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

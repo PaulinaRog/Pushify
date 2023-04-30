@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   TitleBox,
   TracksContainer,
@@ -10,7 +10,7 @@ import {
 import { List } from "./styles/SideMenuStyles";
 import { Track } from "./Track";
 import { useTranslation } from "react-i18next";
-import { AlbumData, TrackData } from "../utils/Interface";
+import { AlbumData, ApiResponse, TrackData } from "../utils/Interface";
 import { TFunction } from "i18next";
 
 export const TrackList: FC<AlbumData> = ({ data }) => {

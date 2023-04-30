@@ -15,6 +15,7 @@ import store from "./src/utils/Store";
 import { SearchEngine } from "./src/views/SearchEngine";
 import { GenreList } from "./src/views/GenreList";
 import { GenreTracks } from "./src/components/GenreTracks";
+import { SongView } from "./src/views/SongView";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -62,6 +63,9 @@ export const App: FC = () => {
               <Route path="settings" element={<Settings />} />
               <Route path="genres" element={<GenreList />}>
                 <Route path=":id" element={<GenreTracks />} />
+              </Route>
+              <Route path="track">
+                <Route path=":id" element={<SongView />} />
               </Route>
             </Routes>
           </BrowserRouter>

@@ -18,5 +18,11 @@
   "album": "Album",
   "duration": "Duration",
   "listen": "What do you want to listen to",
-  "browse": "Browse all"
+  "browse": "Browse all",
+  "lyrics": "Lyrics",
+  "artist": "Artist",
+  "notFound": "Not found",
+  "popular": "Popular songs",
+  "showMore": "Show more",
+  "showLess": "Show less"
 }

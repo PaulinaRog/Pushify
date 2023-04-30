@@ -2,8 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { SideMenu } from "../components/SideMenu";
 import { TopNav } from "../components/TopNav";
 import { H1, MainContainer } from "../components/styles/MainStyles";
-import { Location, useLocation, useParams } from "react-router-dom";
-import { albums } from "../utils/Albums";
+import { useLocation, useParams } from "react-router-dom";
 import {
   AlbumContainer,
   AlbumCover,
@@ -16,16 +15,17 @@ import { ApiResponse } from "../utils/Interface";
 export const ViewAlbum: FC = () => {
   const { id } = useParams<RouteParams>();
   const [data, setData] = useState<ApiResponse | null>(null);
-  const location: Location = useLocation();
+  const location = useLocation();
   const cover: string = location.state.cover;
   const artist: string = location.state.artist;
   const tracklist: string = location.state.tracklist;
 
   const api: string = tracklist;
-  const baseUrl: string = `https://cors-anywhere.herokuapp.com/${api}`;
+  const baseUrl: string = `${api}`;
+  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku + baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
