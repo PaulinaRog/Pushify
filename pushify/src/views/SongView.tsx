@@ -21,10 +21,12 @@ import {
   LyricsBox,
   LyricsContainer,
 } from "../components/styles/SongViewStyles";
-import { RadioArtist, TrackData } from "../utils/Interface";
+import { ApiResponse, RadioArtist, TrackData } from "../utils/Interface";
 import { Lyrics } from "../components/Lyrics";
 import { PopularTracks } from "../components/PopularTracks";
 import { Player } from "../components/Player";
+import { ArtistAlbums } from "../components/ArtistAlbums";
+import { Dispatch, SetStateAction } from "react";
 
 export const SongView: FC = () => {
   const location = useLocation();
@@ -43,6 +45,8 @@ export const SongView: FC = () => {
 
   const { t }: { t: TFunction } = useTranslation();
 
+  const click: object = { cursor: "pointer" };
+
   function secondsToMinutes(time: number) {
     return (
       "0" +
@@ -58,7 +62,7 @@ export const SongView: FC = () => {
   const heroku: string = `https://cors-anywhere.herokuapp.com/`;
 
   const getData = async (): Promise<RadioArtist> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -70,7 +74,6 @@ export const SongView: FC = () => {
     getData()
       .then((res) => {
         setData(res);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e.message);
@@ -89,8 +92,6 @@ export const SongView: FC = () => {
 
   return (
     <>
-      <TopNav />
-      <SideMenu />
       <MainContainer>
         <AlbumContainer>
           <AlbumCover src={cover}></AlbumCover>
@@ -100,7 +101,9 @@ export const SongView: FC = () => {
               <ArtPicSml
                 src={artPic ? artPic : data?.picture_small}
               ></ArtPicSml>
-              <Artist onClick={handleClick}>{artist}</Artist>
+              <Artist onClick={handleClick} style={click}>
+                {artist}
+              </Artist>
               <Artist>{secondsToMinutes(duration)}</Artist>
             </FlexGap20>
           </BoxCol>
@@ -115,12 +118,15 @@ export const SongView: FC = () => {
                 ></ArtPicMid>
                 <BoxCol>
                   <Artist>{t("artist")}</Artist>
-                  <h3 onClick={handleClick}>{artist}</h3>
+                  <h3 onClick={handleClick} style={click}>
+                    {artist}
+                  </h3>
                 </BoxCol>
               </FlexGap20>
             </ArtistBox>
           </LyricsContainer>
           <PopularTracks artist={artist} title={title} d={d} />
+          <ArtistAlbums artist={artist} title={title} d={d} />
         </TracksContainer>
       </MainContainer>
       <Player />

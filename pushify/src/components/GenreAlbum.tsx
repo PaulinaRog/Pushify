@@ -30,7 +30,6 @@ export const GenreAlbum: FC<RadioDataData> = ({ album, artist }) => {
     });
   };
 
-  console.log(artist.tracklist);
 
   return (
     <>

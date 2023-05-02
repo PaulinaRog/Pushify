@@ -22,8 +22,6 @@ export const Settings: FC = () => {
 
   return (
     <>
-      <SideMenu />
-      <TopNav />
       <MainContainer>
         <H1>{t("settings")}</H1>
         <LanguageH3>{t("language")}</LanguageH3>

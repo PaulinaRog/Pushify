@@ -57,7 +57,6 @@ export const TopNav: FC = () => {
           )}
         </Profile>
         <DropdownUL style={dropdown}>
-          <DropdownLI>{t("profile")}</DropdownLI>
           <DropdownLI onClick={handleNavigate} id={"/settings"}>
             {t("settings")}
           </DropdownLI>

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { LyricsBox } from "./styles/SongViewStyles";
 import { useDispatch } from "react-redux";
 import { updateTrackData } from "../utils/Slice";
+import { useLocation } from "react-router-dom";
 
 export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
   const apiKey: string = "96c7f77832f3af181363ef3f3e4678c9";
@@ -12,12 +13,15 @@ export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
   const [lyrics, setLyrics] = useState<string>("");
   const { t }: { t: TFunction } = useTranslation();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const data = location.state.d;
+  console.log(d);
 
-  const ico: object = { fontSize: "3em" };
+  const ico: object = { fontSize: "3em", cursor: "pointer" };
 
   const searchTrack = async () => {
     try {
-      const searchUrl: string = `${heroku}https://api.musixmatch.com/ws/1.1/track.search?q_track=${title
+      const searchUrl: string = `https://api.musixmatch.com/ws/1.1/track.search?q_track=${title
         .toLowerCase()
         .replace(/\s+/g, "-")
         .replace("?", "")
@@ -28,7 +32,7 @@ export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
       const data = await response.json();
       const trackId: number = data?.message.body.track_list[0].track.track_id;
 
-      const lyricsUrl: string = `${heroku}https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${apiKey}`;
+      const lyricsUrl: string = `https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${apiKey}`;
       const lyricsResponse: Response = await fetch(lyricsUrl);
       const lyricsData = await lyricsResponse.json();
       const trackLyrics: string = lyricsData?.message.body.lyrics.lyrics_body;
@@ -48,7 +52,7 @@ export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
   }
 
   const handleClick = (e: React.MouseEvent) => {
-    dispatch(updateTrackData(d));
+    dispatch(updateTrackData(d ? d : data));
   };
 
   return (

@@ -3,6 +3,7 @@ export interface Album {
   title: string;
   cover_medium: string;
   id: number;
+  tracklist: string;
 }
 
 export interface Artist {
@@ -123,10 +124,22 @@ export interface SearchResults {
   title: string;
   id: string;
   duration: number;
+  al: SearchResults;
 }
 
 export interface stateProps {
   artist: string;
   title: string;
   d: TrackData;
+}
+
+export interface ReducedAlbums {
+  id: number;
+  cover: string;
+  title: string;
+  tracklist: string;
+}
+
+export interface LayoutProps {
+  children: React.ReactNode;
 }

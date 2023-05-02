@@ -66,7 +66,7 @@ export const Player: FC = () => {
       {trackData && (
         <>
           <PlayerContainer>
-            <TitleBox style={{ width: "30vw" }}>
+            <TitleBox style={{ width: "20vw" }}>
               <img src={trackData?.album.cover_small} />
               <BoxCol>
                 <Artist>{trackData.artist.name}</Artist>

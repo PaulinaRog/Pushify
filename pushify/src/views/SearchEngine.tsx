@@ -18,7 +18,7 @@ export const SearchEngine: FC = () => {
   const baseUrl: string = `${api}`;
 
   const getData = async (): Promise<Genre> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -30,7 +30,6 @@ export const SearchEngine: FC = () => {
     getData()
       .then((res) => {
         setData(res);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e.message);
@@ -39,8 +38,6 @@ export const SearchEngine: FC = () => {
 
   return (
     <>
-      <SideMenu />
-      <TopNav />
       <MainContainer>
         <SearchTool />
         <H2>{t("browse")}</H2>

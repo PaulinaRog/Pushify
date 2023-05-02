@@ -1,16 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import { GenreData, RadioData, RouteParams, Title } from "../utils/Interface";
+import { RadioData, RouteParams } from "../utils/Interface";
 import { Location, useLocation, useParams } from "react-router-dom";
-import { TopNav } from "../components/TopNav";
-import { SideMenu } from "../components/SideMenu";
-import { H1, H2, MainContainer } from "../components/styles/MainStyles";
-import {
-  RadioAlbum,
-  RadioArtist,
-  RadioBigContainer,
-  RadioContainer,
-  RadioPic,
-} from "../components/styles/GenreListStyles";
+import { H1, MainContainer } from "../components/styles/MainStyles";
+import { RadioBigContainer } from "../components/styles/GenreListStyles";
 import { GenreAlbum } from "../components/GenreAlbum";
 
 export const GenreList: FC = () => {
@@ -24,7 +16,7 @@ export const GenreList: FC = () => {
   const baseUrl: string = `${api}`;
 
   const getData = async (): Promise<RadioData> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -36,7 +28,6 @@ export const GenreList: FC = () => {
     getData()
       .then((res) => {
         setData(res);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e.message);
@@ -45,8 +36,6 @@ export const GenreList: FC = () => {
 
   return (
     <>
-      <TopNav />
-      <SideMenu />
       <MainContainer>
         <H1>{state}</H1>
         <RadioBigContainer>
@@ -54,7 +43,7 @@ export const GenreList: FC = () => {
             data.data.map((d) => {
               return (
                 <GenreAlbum
-                  key={d.album.id}
+                  key={d.album.id + d.artist.id}
                   album={d.album}
                   artist={d.artist}
                 />

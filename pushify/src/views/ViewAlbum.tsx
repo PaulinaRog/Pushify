@@ -25,7 +25,7 @@ export const ViewAlbum: FC = () => {
   const heroku: string = `https://cors-anywhere.herokuapp.com/`;
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -45,9 +45,6 @@ export const ViewAlbum: FC = () => {
 
   return (
     <>
-      <SideMenu />
-      <TopNav />
-      <Player />
       <MainContainer>
         <AlbumContainer>
           <AlbumCover src={cover}></AlbumCover>

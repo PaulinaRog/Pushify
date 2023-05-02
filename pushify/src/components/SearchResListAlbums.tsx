@@ -11,6 +11,7 @@ export const SearchResListAlbums: FC<SearchResults> = ({
   title,
   id,
   duration,
+  al,
 }) => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -33,6 +34,7 @@ export const SearchResListAlbums: FC<SearchResults> = ({
         artPic: artist.picture_small,
         duration: duration,
         artPicMed: artist.picture_medium,
+        d: al,
       },
     });
   };

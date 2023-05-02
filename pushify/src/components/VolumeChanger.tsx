@@ -27,10 +27,14 @@ export const VolumeChanger: FC<AudioRef> = forwardRef(({ audioRef }, ref) => {
     setSilenced(false);
     audioRef.current && (audioRef.current.volume = Number(lastPosition));
     setBgSize(`${Number(lastPosition) * 100}%`);
-    console.log(lastPosition);
   };
 
   const width: object = { width: 40 };
+
+  if (lastPosition) {
+    localStorage.setItem("volume", `${lastPosition}`);
+  }
+  const vol: string | null = localStorage.getItem("volume");
 
   return (
     <>
@@ -50,7 +54,7 @@ export const VolumeChanger: FC<AudioRef> = forwardRef(({ audioRef }, ref) => {
         )}
         <RangeInput
           type="range"
-          defaultValue={100}
+          value={Number(vol)}
           onChange={handleChangeVolume}
           style={{ backgroundSize: bgSize }}
           disabled={silenced}

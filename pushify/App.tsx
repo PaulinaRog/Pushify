@@ -16,6 +16,7 @@ import { SearchEngine } from "./src/views/SearchEngine";
 import { GenreList } from "./src/views/GenreList";
 import { GenreTracks } from "./src/components/GenreTracks";
 import { SongView } from "./src/views/SongView";
+import { Layout } from "./src/components/Layout";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -54,20 +55,22 @@ export const App: FC = () => {
         <I18nextProvider i18n={i18next}>
           <GlobalStyle />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="album">
-                <Route path=":id" element={<ViewAlbum />} />
-              </Route>
-              <Route path="search" element={<SearchEngine />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="genres" element={<GenreList />}>
-                <Route path=":id" element={<GenreTracks />} />
-              </Route>
-              <Route path="track">
-                <Route path=":id" element={<SongView />} />
-              </Route>
-            </Routes>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="album">
+                  <Route path=":id" element={<ViewAlbum />} />
+                </Route>
+                <Route path="search" element={<SearchEngine />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="genres" element={<GenreList />}>
+                  <Route path=":id" element={<GenreTracks />} />
+                </Route>
+                <Route path="track">
+                  <Route path=":id" element={<SongView />} />
+                </Route>
+              </Routes>
+            </Layout>
           </BrowserRouter>
         </I18nextProvider>
       </Provider>

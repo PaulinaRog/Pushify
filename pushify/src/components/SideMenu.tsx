@@ -45,10 +45,6 @@ export const SideMenu: FC = () => {
           <i style={ico} className="fa-solid fa-magnifying-glass"></i>{" "}
           {t("search")}
         </Li>
-        <Li>
-          <i style={ico} className="fa-solid fa-book-bookmark"></i>{" "}
-          {t("library")}
-        </Li>
       </List>
     </Aside>
   );

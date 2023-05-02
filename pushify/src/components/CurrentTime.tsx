@@ -27,8 +27,10 @@ export const CurrentTime: FC<CurrentTimeProps> = forwardRef(
 
     useEffect(() => {
       const intervalId = setInterval(() => {
-        setBgSize(`${audioRef.current?.currentTime}%`);
-        setTime(Number(audioRef.current?.currentTime));
+        if (audioRef.current) {
+          setBgSize(`${audioRef.current.currentTime}%`);
+          setTime(Number(audioRef.current.currentTime));
+        }
       }, 1000);
 
       return () => {
@@ -37,9 +39,10 @@ export const CurrentTime: FC<CurrentTimeProps> = forwardRef(
     }, [audioRef.current?.currentTime]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value: string = e.currentTarget.value;
-      audioRef.current && (audioRef.current.currentTime = Number(value) / 100);
-      setBgSize(`${Number(audioRef.current?.currentTime) * 100}%`);
+      const value: number = Number(e.currentTarget.value) / 100;
+      audioRef.current &&
+        (audioRef.current.currentTime = value * trackData.duration);
+      setBgSize(`${value * 100}%`);
     };
 
     return (
@@ -49,8 +52,11 @@ export const CurrentTime: FC<CurrentTimeProps> = forwardRef(
           <RangeInput
             type="range"
             defaultValue={0}
+            min={0}
+            max={100}
+            step={0.1}
             onChange={handleChange}
-            style={{ backgroundSize: bgSize }}
+            style={{ backgroundSize: bgSize, width: 400 }}
           ></RangeInput>
           <p>{secondsToMinutes(trackData?.duration)}</p>
         </TitleBox>

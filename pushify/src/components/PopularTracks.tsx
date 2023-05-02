@@ -1,18 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
-import {
-  ApiResponse,
-  ApiSearch,
-  TrackData,
-  stateProps,
-} from "../utils/Interface";
+import { ApiResponse, TrackData, stateProps } from "../utils/Interface";
 import { List } from "./styles/SideMenuStyles";
 import { Track } from "./Track";
-import { Artist } from "./styles/MainStyles";
 import { H3, LoadMoreLess } from "./styles/SongViewStyles";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 
-export const PopularTracks: FC<stateProps> = ({ artist, title }) => {
+export const PopularTracks: FC<stateProps> = ({ artist }) => {
   const [data, setData] = useState<ApiResponse>();
   const [limit, setLimit] = useState<number>(5);
   const { t }: { t: TFunction } = useTranslation();
@@ -21,7 +15,7 @@ export const PopularTracks: FC<stateProps> = ({ artist, title }) => {
   const baseUrl: string = `https://api.deezer.com/search?q=${artist}&limit=${limit}`;
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -33,7 +27,6 @@ export const PopularTracks: FC<stateProps> = ({ artist, title }) => {
     getData()
       .then((res) => {
         setData(res);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e.message);

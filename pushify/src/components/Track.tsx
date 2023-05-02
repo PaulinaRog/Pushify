@@ -65,7 +65,6 @@ export const Track: FC<TrackProps> = ({ d, idx }) => {
         d: d,
       },
     });
-    window.location.reload();
   };
 
   return (

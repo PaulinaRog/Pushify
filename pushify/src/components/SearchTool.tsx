@@ -28,7 +28,7 @@ export const SearchTool: FC = () => {
   };
 
   const getData = async (): Promise<ApiSearch> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
@@ -41,7 +41,6 @@ export const SearchTool: FC = () => {
       getData()
         .then((res) => {
           setData(res);
-          console.log(res);
         })
         .catch((e) => {
           console.log(e.message);
@@ -68,6 +67,7 @@ export const SearchTool: FC = () => {
               title={data.data[0].title}
               id={data.data[0].id}
               duration={data.data[0].duration}
+              al={data.data[0]}
             />
           </SearchResults>
           <AlbumsContainer>
@@ -80,6 +80,7 @@ export const SearchTool: FC = () => {
                   title={al.title}
                   id={al.id}
                   duration={al.duration}
+                  al={al}
                 />
               );
             })}

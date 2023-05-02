@@ -20,7 +20,6 @@ export const SearchResListArtist: FC<SearchResults> = ({ artist, album }) => {
         tracklist: artist.tracklist,
       },
     });
-    console.log("clicked");
   };
 
   return (
