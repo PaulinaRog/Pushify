@@ -21,7 +21,7 @@ export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
 
   const searchTrack = async () => {
     try {
-      const searchUrl: string = `https://api.musixmatch.com/ws/1.1/track.search?q_track=${title
+      const searchUrl: string = `${heroku}https://api.musixmatch.com/ws/1.1/track.search?q_track=${title
         .toLowerCase()
         .replace(/\s+/g, "-")
         .replace("?", "")
@@ -32,7 +32,7 @@ export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
       const data = await response.json();
       const trackId: number = data?.message.body.track_list[0].track.track_id;
 
-      const lyricsUrl: string = `https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${apiKey}`;
+      const lyricsUrl: string = `${heroku}https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${apiKey}`;
       const lyricsResponse: Response = await fetch(lyricsUrl);
       const lyricsData = await lyricsResponse.json();
       const trackLyrics: string = lyricsData?.message.body.lyrics.lyrics_body;

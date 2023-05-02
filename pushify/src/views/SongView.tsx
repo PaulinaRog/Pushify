@@ -62,7 +62,7 @@ export const SongView: FC = () => {
   const heroku: string = `https://cors-anywhere.herokuapp.com/`;
 
   const getData = async (): Promise<RadioArtist> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku+baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

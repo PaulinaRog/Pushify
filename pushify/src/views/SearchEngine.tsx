@@ -18,7 +18,7 @@ export const SearchEngine: FC = () => {
   const baseUrl: string = `${api}`;
 
   const getData = async (): Promise<Genre> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku + baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

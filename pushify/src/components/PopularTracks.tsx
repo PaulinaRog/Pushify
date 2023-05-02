@@ -15,7 +15,7 @@ export const PopularTracks: FC<stateProps> = ({ artist }) => {
   const baseUrl: string = `https://api.deezer.com/search?q=${artist}&limit=${limit}`;
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(baseUrl);
+    const response = await fetch(heroku + baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
