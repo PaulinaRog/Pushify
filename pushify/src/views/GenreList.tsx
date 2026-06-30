@@ -4,6 +4,7 @@ import { Location, useLocation, useParams } from "react-router-dom";
 import { H1, MainContainer } from "../components/styles/MainStyles";
 import { RadioBigContainer } from "../components/styles/GenreListStyles";
 import { GenreAlbum } from "../components/GenreAlbum";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const GenreList: FC = () => {
   const [data, setData] = useState<RadioData | null>(null);
@@ -11,12 +12,10 @@ export const GenreList: FC = () => {
   const location: Location = useLocation();
   const state: string = location.state.title;
 
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
-  const api: string = `https://api.deezer.com/radio/${id}/tracks`;
-  const baseUrl: string = `${api}`;
+  const baseUrl: string = deezerApiUrl(`/radio/${id}/tracks`);
 
   const getData = async (): Promise<RadioData> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

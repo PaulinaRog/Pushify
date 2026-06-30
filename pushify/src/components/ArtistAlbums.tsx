@@ -15,17 +15,19 @@ import {
 import { H3 } from "./styles/SongViewStyles";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const ArtistAlbums: FC<stateProps> = ({ artist }) => {
   const [data, setData] = useState<ApiResponse>();
   const [albums, setAlbums] = useState<ReducedAlbums[]>([]);
   const { t }: { t: TFunction } = useTranslation();
 
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
-  const baseUrl: string = `https://api.deezer.com/search?q=${artist}`;
+  const baseUrl: string = deezerApiUrl(
+    `/search?q=${encodeURIComponent(artist)}`
+  );
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

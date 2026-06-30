@@ -5,17 +5,19 @@ import { Track } from "./Track";
 import { H3, LoadMoreLess } from "./styles/SongViewStyles";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const PopularTracks: FC<stateProps> = ({ artist }) => {
   const [data, setData] = useState<ApiResponse>();
   const [limit, setLimit] = useState<number>(5);
   const { t }: { t: TFunction } = useTranslation();
 
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
-  const baseUrl: string = `https://api.deezer.com/search?q=${artist}&limit=${limit}`;
+  const baseUrl: string = deezerApiUrl(
+    `/search?q=${encodeURIComponent(artist)}&limit=${limit}`
+  );
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

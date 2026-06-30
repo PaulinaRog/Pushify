@@ -8,17 +8,15 @@ import { GenresContainer } from "../components/styles/SearchStyles";
 import { Genre } from "../utils/Interface";
 import { Genres } from "../components/Genres";
 import { SearchTool } from "../components/SearchTool";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const SearchEngine: FC = () => {
   const { t }: { t: TFunction } = useTranslation();
   const [data, setData] = useState<Genre | null>(null);
-  const api: string = "https://api.deezer.com/radio";
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
-
-  const baseUrl: string = `${api}`;
+  const baseUrl: string = deezerApiUrl("/radio");
 
   const getData = async (): Promise<Genre> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

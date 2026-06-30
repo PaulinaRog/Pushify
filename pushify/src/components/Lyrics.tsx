@@ -6,10 +6,10 @@ import { LyricsBox } from "./styles/SongViewStyles";
 import { useDispatch } from "react-redux";
 import { updateTrackData } from "../utils/Slice";
 import { useLocation } from "react-router-dom";
+import { musixmatchApiUrl } from "../utils/apiProxy";
 
 export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
   const apiKey: string = "96c7f77832f3af181363ef3f3e4678c9";
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
   const [lyrics, setLyrics] = useState<string>("");
   const { t }: { t: TFunction } = useTranslation();
   const dispatch = useDispatch();
@@ -21,18 +21,25 @@ export const Lyrics: FC<stateProps> = ({ artist, title, d }) => {
 
   const searchTrack = async () => {
     try {
-      const searchUrl: string = `${heroku}https://api.musixmatch.com/ws/1.1/track.search?q_track=${title
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace("?", "")
-        .replace("'", "")}&q_artist=${artist
-        .toLowerCase()
-        .replace(/\s+/g, "-")}&apikey=${apiKey}`;
+      const searchParams = new URLSearchParams({
+        q_track: title.toLowerCase().replace(/\s+/g, "-"),
+        q_artist: artist.toLowerCase().replace(/\s+/g, "-"),
+        apikey: apiKey,
+      });
+      const searchUrl: string = musixmatchApiUrl(
+        `/ws/1.1/track.search?${searchParams.toString()}`
+      );
       const response: Response = await fetch(searchUrl);
       const data = await response.json();
       const trackId: number = data?.message.body.track_list[0].track.track_id;
 
-      const lyricsUrl: string = `${heroku}https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=${apiKey}`;
+      const lyricsParams = new URLSearchParams({
+        track_id: trackId.toString(),
+        apikey: apiKey,
+      });
+      const lyricsUrl: string = musixmatchApiUrl(
+        `/ws/1.1/track.lyrics.get?${lyricsParams.toString()}`
+      );
       const lyricsResponse: Response = await fetch(lyricsUrl);
       const lyricsData = await lyricsResponse.json();
       const trackLyrics: string = lyricsData?.message.body.lyrics.lyrics_body;
