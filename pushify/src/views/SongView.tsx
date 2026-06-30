@@ -27,6 +27,7 @@ import { PopularTracks } from "../components/PopularTracks";
 import { Player } from "../components/Player";
 import { ArtistAlbums } from "../components/ArtistAlbums";
 import { Dispatch, SetStateAction } from "react";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const SongView: FC = () => {
   const location = useLocation();
@@ -58,11 +59,10 @@ export const SongView: FC = () => {
     );
   }
 
-  const baseUrl: string = `https://api.deezer.com/artist/${artistId}`;
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
+  const baseUrl: string = deezerApiUrl(`/artist/${artistId}`);
 
   const getData = async (): Promise<RadioArtist> => {
-    const response = await fetch(heroku+baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

@@ -10,6 +10,7 @@ import {
 import { TrackList } from "../components/TrackList";
 import { Player } from "../components/Player";
 import { ApiResponse } from "../utils/Interface";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const RadioAlbums: FC = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -18,12 +19,10 @@ export const RadioAlbums: FC = () => {
   const artist: string = location.state.artist;
   const tracklist: string = location.state.tracklist;
 
-  const api: string = tracklist;
-  const baseUrl: string = `${api}`;
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
+  const baseUrl: string = deezerApiUrl(tracklist);
 
   const getData = async (): Promise<ApiResponse> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {

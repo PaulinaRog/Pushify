@@ -1,4 +1,16 @@
 [[redirects]]
+  from = "/deezer/*"
+  to = "https://api.deezer.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/musixmatch/*"
+  to = "https://api.musixmatch.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "*"
   to = "/index.html"
   status = 200

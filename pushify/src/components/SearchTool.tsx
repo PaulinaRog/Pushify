@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { ApiSearch } from "../utils/Interface";
 import { SearchResListArtist } from "./SearchResListArtist";
 import { SearchResListAlbums } from "./SearchResListAlbums";
+import { deezerApiUrl } from "../utils/apiProxy";
 
 export const SearchTool: FC = () => {
   const { t }: { t: TFunction } = useTranslation();
@@ -20,15 +21,16 @@ export const SearchTool: FC = () => {
   const [data, setData] = useState<ApiSearch | null>(null);
 
   const inputValue: string = `${value}`;
-  const heroku: string = `https://cors-anywhere.herokuapp.com/`;
-  const baseUrl: string = `https://api.deezer.com/search?q=${inputValue}&limit=5`;
+  const baseUrl: string = deezerApiUrl(
+    `/search?q=${encodeURIComponent(inputValue)}&limit=5`
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
   };
 
   const getData = async (): Promise<ApiSearch> => {
-    const response = await fetch(heroku + baseUrl);
+    const response = await fetch(baseUrl);
     if (!response.ok) {
       throw new Error("Data could not be fetched!");
     } else {
